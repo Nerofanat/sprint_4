@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 public class StatusModal {
     private WebDriver driver;
     // Кнопка "Посмотреть статус"
-    private By statusButton = By.xpath(".//button [@class = 'Button_Button__ra12g Button_Middle__1CSJM' and contains(text(), 'Посмотреть статус')]");
+    private By statusButton = By.xpath(".//button [contains(text(), 'Посмотреть статус')]");
     // Само окошко
     private By modalStatus = By.xpath(".//div[@class = 'Order_ModalHeader__3FDaJ' and contains(text(), 'оформлен')]");
 

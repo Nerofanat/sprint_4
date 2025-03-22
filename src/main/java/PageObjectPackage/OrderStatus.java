@@ -17,19 +17,19 @@ public class OrderStatus {
     //Кнопка для отмены заказа
     private By orderCancellation = By.xpath(".//button [@class = 'Button_Button__ra12g Button_Middle__1CSJM' and contains(text(), 'Отменить заказ')]");
     //Картинка с предупреждением что заказ не найден
-    private By thePictureThereIsNoSuchOrder = By.xpath(".//img [@src = '/assets/not-found.png']");
+    private By PictureThereIsNoSuchOrder = By.xpath(".//img [@src = '/assets/not-found.png']");
     // Селекторы полей из информации по заказу (проверю ради интереса имя и фамилию)
     // имя
-    private By name = By.xpath(".//div[@class = 'Track_Row__1sN1F']/div[@class = 'Track_Title__1XfhB' and contains(text(), 'Имя')]/following-sibling::div[@class='Track_Value__15eEX']");
+    private By name = By.xpath(".//div[contains (@class, 'Track_Row')]/div[contains(text(), 'Имя')]/following-sibling::div[contains (@class, 'Track_Value')]");
     //фамилия
-    private By surname = By.xpath(".//div[@class = 'Track_Row__1sN1F']/div[@class = 'Track_Title__1XfhB' and contains(text(), 'Фамилия')]/following-sibling::div[@class='Track_Value__15eEX']");
+    private By surname = By.xpath(".//div[contains (@class, 'Track_Row')]/div[contains(text(), 'Фамилия')]/following-sibling::div[contains (@class, 'Track_Value')]");
 
     public OrderStatus(WebDriver driver) {
         this.driver = driver;
     }
 
-    public boolean thePictureThereIsNoSuchOrderIsDisplayed() {
-        return driver.findElement(thePictureThereIsNoSuchOrder).isDisplayed();
+    public boolean PictureThereIsNoSuchOrderIsDisplayed() {
+        return driver.findElement(PictureThereIsNoSuchOrder).isDisplayed();
     }
 
     //Получить текст из имени и фамилии

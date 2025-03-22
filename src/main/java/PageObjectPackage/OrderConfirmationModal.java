@@ -7,9 +7,9 @@ public class OrderConfirmationModal {
 
     private WebDriver driver;
     //Само модальное окошко
-    private By modalYesNo = By.xpath(".//div [@class = 'Order_ModalHeader__3FDaJ' and contains(text(), 'Хотите оформить заказ')]");
+    private By modalYesNo = By.xpath(".//div [contains(@class, 'Order_ModalHeader')]");
     //Кнопка "Да"
-    private By yesButton = By.xpath(".//button [@class = 'Button_Button__ra12g Button_Middle__1CSJM' and contains(text(), 'Да')]");
+    private By yesButton = By.xpath(".//button [contains(text(), 'Да')]");
 
 
     public By getModalYesNo() {

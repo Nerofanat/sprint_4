@@ -1,30 +1,29 @@
+import Exceptions.UndefinedBehaviorException;
+import Provision.BrowserInitialization;
+import Provision.Enum;
+import Provision.WaitUtils;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.junit.Test;
 import org.junit.After;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import PageObjectPackage.*;
 
-import java.time.Duration;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
-public class ClickLogoAdditionalScenarios {
+public class ClickLogoAdditionalScenariosTest {
 
     private WebDriver driver;
 
     //Переход по клику на лого самоката на главную
     @Test
-    public void clickScooterGoToTheMainPage() {
+    public void clickScooterGoToTheMainPage() throws UndefinedBehaviorException {
 
-        driver = new FirefoxDriver();
+        driver = BrowserInitialization.getBrowserDriver(Enum.BrowserType.FIREFOX);
+        BrowserInitialization.goUrl(driver);
 
         SiteHeader header = new SiteHeader(driver);
-
-        driver.get("https://qa-scooter.praktikum-services.ru");
-
         header.clickLogoScooter();
 
         // Получаем список всех открытых вкладок браузера и переключаемся на первую
@@ -32,8 +31,7 @@ public class ClickLogoAdditionalScenarios {
         driver.switchTo().window(tabs.get(0));
 
         // Ожидаем нужный нам урл
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        wait.until(ExpectedConditions.urlToBe("https://qa-scooter.praktikum-services.ru/"));
+        WaitUtils.waitForCondition(driver, ExpectedConditions.urlToBe("https://qa-scooter.praktikum-services.ru/"), 2, "Не дождались URL 'https://qa-scooter.praktikum-services.ru/'");
 
         String expectedUrl = driver.getCurrentUrl();
         String actual = "https://qa-scooter.praktikum-services.ru/";
@@ -44,31 +42,27 @@ public class ClickLogoAdditionalScenarios {
 
     //Переход по клику на лого Яндекса на главную Яндекса
     @Test
-    public void clickYandexGoToTheMainPage() {
+    public void checkClickYandexGoToTheMainPageTest() throws UndefinedBehaviorException {
 
-        driver = new FirefoxDriver();
+        driver = BrowserInitialization.getBrowserDriver(Enum.BrowserType.FIREFOX);
+        BrowserInitialization.goUrl(driver);
 
-        SiteHeader header = new SiteHeader(driver);
-
-        driver.get("https://qa-scooter.praktikum-services.ru");
 
         // Клик по кнопке + Переключение на новую вкладку
-
+        SiteHeader header = new SiteHeader(driver);
         header.clickLogoYandex();
 
         // Получаем список всех открытых вкладок браузера и переключаемся на вторую
         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
 
-        /* Тут поменял urlMatches на urlToBe иначе он видел совпадение но проверка
-        почему-то завершалась провалом при равных абсолютно урлах */
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        wait.until(ExpectedConditions.urlToBe("https://dzen.ru/?yredirect=true"));
+        // Ожидаем нужный нам урл
+        WaitUtils.waitForCondition(driver, ExpectedConditions.urlToBe("https://dzen.ru/?yredirect=true"), 2, "Не дождались URL 'https://dzen.ru/?yredirect=true'");
 
         String expectedUrl = driver.getCurrentUrl();
         String actual = "https://dzen.ru/?yredirect=true";
 
-        assertEquals(expectedUrl, actual);
+        assertEquals(actual, expectedUrl);
 
     }
 

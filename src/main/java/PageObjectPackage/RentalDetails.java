@@ -17,19 +17,19 @@ public class RentalDetails {
     //Период аренды
     private By rentalPeriod = By.className("Dropdown-root");
     //1 сутки
-    private By day_1 = By.xpath(".//div[contains (@class, 'Dropdown-option') and contains(text(), 'сутки')]");
+    private By day_1 = By.xpath(".//div[contains(text(), 'сутки')]");
     //2 суток
-    private By day_2 = By.xpath(".//div[contains (@class, 'Dropdown-option') and contains(text(), 'двое суток')]");
+    private By day_2 = By.xpath(".//div[contains(text(), 'двое суток')]");
     //3 суток
-    private By day_3 = By.xpath(".//div[contains (@class, 'Dropdown-option') and contains(text(), 'трое суток')]");
+    private By day_3 = By.xpath(".//div[contains(text(), 'трое суток')]");
     //4 суток
-    private By day_4 = By.xpath(".//div[contains (@class, 'Dropdown-option') and contains(text(), 'четверо суток')]");
+    private By day_4 = By.xpath(".//div[contains(text(), 'четверо суток')]");
     //5 суток
-    private By day_5 = By.xpath(".//div[contains (@class, 'Dropdown-option') and contains(text(), 'пятеро суток')]");
+    private By day_5 = By.xpath(".//div[contains(text(), 'пятеро суток')]");
     //6 суток
-    private By day_6 = By.xpath(".//div[contains (@class, 'Dropdown-option') and contains(text(), 'шестеро суток')]");
+    private By day_6 = By.xpath(".//div[contains(text(), 'шестеро суток')]");
     //7 суток
-    private By day_7 = By.xpath(".//div[contains (@class, 'Dropdown-option') and contains(text(), 'семеро суток')]");
+    private By day_7 = By.xpath(".//div[contains(text(), 'семеро суток')]");
     //Цвет
     private By colorSelection = By.className("Order_Checkboxes__3lWSI");
     //Цвет черный жемчуг
@@ -45,31 +45,33 @@ public class RentalDetails {
         this.driver = driver;
     }
 
+    //Получить селектор по номеру дня (с иключениями не заморачивался)
+    public static By getDaySelector(int dayNamber) {
+        int dayNumber = dayNamber;
+        String[] dayNames = {
+                "сутки",
+                "двое суток",
+                "трое суток",
+                "четверо суток",
+                "пятеро суток",
+                "шестеро суток",
+                "семеро суток"
+        };
+
+        return By.xpath(".//div[contains(text(), '" + dayNames[dayNumber - 1] + "')]");
+    }
+
     public By getRentalDetailsWindow() {
         return rentalDetailsWindow;
     }
 
-    public void fillOutTheRentalDetailsForm(String whenToBring, String period, String color, String yoursComment) {
+    public void fillOutRentalDetailsForm(String whenToBring, int period, String color, String yoursComment) {
         driver.findElement(whenToBringTheScooter).clear();
         driver.findElement(whenToBringTheScooter).sendKeys(whenToBring);
         driver.findElement(rightDay).click();
         driver.findElement(rentalPeriod).click();
-        if (period.equals("1")) {
-            driver.findElement(day_1).click();
-        } else if (period.equals("2")) {
-            driver.findElement(day_2).click();
-        } else if (period.equals("3")) {
-            driver.findElement(day_3).click();
-        } else if (period.equals("4")) {
-            driver.findElement(day_4).click();
-        } else if (period.equals("5")) {
-            driver.findElement(day_5).click();
-        } else if (period.equals("6")) {
-            driver.findElement(day_6).click();
-        } else {
-            //не знаю как в данном случае лучше поступить
-            driver.findElement(day_7).click();
-        }
+
+        driver.findElement(getDaySelector(period)).click();
 
         if (color.contains("жемчуг")) {
             driver.findElement(blackPearl).click();

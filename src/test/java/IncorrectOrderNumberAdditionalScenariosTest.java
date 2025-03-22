@@ -1,23 +1,22 @@
 import PageObjectPackage.MainPage;
 import PageObjectPackage.OrderStatus;
 import PageObjectPackage.SiteHeader;
+import Provision.WaitUtils;
 import org.junit.After;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
-public class IncorrectOrderNumberAdditionalScenarios {
+public class IncorrectOrderNumberAdditionalScenariosTest {
     private WebDriver driver;
 
     @Test
-    public void incorrectOrderNumber() {
+    public void checkIncorrectOrderNumberTest() {
 
         driver = new ChromeDriver();
 
@@ -28,8 +27,8 @@ public class IncorrectOrderNumberAdditionalScenarios {
         driver.get("https://qa-scooter.praktikum-services.ru");
         main.clickCookieButton();
         header.clickOrderStatusButton();
-        new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.elementToBeClickable(header.getOrderNumber()));
+
+        WaitUtils.waitForCondition(driver, ExpectedConditions.elementToBeClickable(header.getOrderNumber()), 5, "Не открылось окно стутуса заказа");
         header.enterTheOrderNumber("88005553535");
 
         header.clickGoButton();
@@ -43,8 +42,7 @@ public class IncorrectOrderNumberAdditionalScenarios {
         assertEquals("Не открылась страница статуса заказа", actualUrl, expectedUrl);
 
         //тут проверить что картинка c предупреждением есть
-        // Возможно тут можно получить прям текст с картинки но мы точно это не проходили
-        boolean expected = status.thePictureThereIsNoSuchOrderIsDisplayed();
+        boolean expected = status.PictureThereIsNoSuchOrderIsDisplayed();
         assert expected;
 
     }
