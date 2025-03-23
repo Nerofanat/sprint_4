@@ -16,20 +16,6 @@ public class RentalDetails {
     private By rightDay = By.className("react-datepicker__day--selected");
     //Период аренды
     private By rentalPeriod = By.className("Dropdown-root");
-    //1 сутки
-    private By day_1 = By.xpath(".//div[contains(text(), 'сутки')]");
-    //2 суток
-    private By day_2 = By.xpath(".//div[contains(text(), 'двое суток')]");
-    //3 суток
-    private By day_3 = By.xpath(".//div[contains(text(), 'трое суток')]");
-    //4 суток
-    private By day_4 = By.xpath(".//div[contains(text(), 'четверо суток')]");
-    //5 суток
-    private By day_5 = By.xpath(".//div[contains(text(), 'пятеро суток')]");
-    //6 суток
-    private By day_6 = By.xpath(".//div[contains(text(), 'шестеро суток')]");
-    //7 суток
-    private By day_7 = By.xpath(".//div[contains(text(), 'семеро суток')]");
     //Цвет
     private By colorSelection = By.className("Order_Checkboxes__3lWSI");
     //Цвет черный жемчуг

@@ -1,11 +1,13 @@
+import Exceptions.UndefinedBehaviorException;
 import PageObjectPackage.MainPage;
 import PageObjectPackage.OrderStatus;
 import PageObjectPackage.SiteHeader;
+import Provision.BrowserInitialization;
+import Provision.Enum;
 import Provision.WaitUtils;
 import org.junit.After;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
@@ -16,15 +18,15 @@ public class IncorrectOrderNumberAdditionalScenariosTest {
     private WebDriver driver;
 
     @Test
-    public void checkIncorrectOrderNumberTest() {
+    public void checkIncorrectOrderNumberTest() throws UndefinedBehaviorException {
 
-        driver = new ChromeDriver();
+        driver = BrowserInitialization.getBrowserDriver(Enum.BrowserType.CHROME);
 
         MainPage main = new MainPage(driver);
         SiteHeader header = new SiteHeader(driver);
         OrderStatus status = new OrderStatus(driver);
 
-        driver.get("https://qa-scooter.praktikum-services.ru");
+        BrowserInitialization.goToUrl(driver);
         main.clickCookieButton();
         header.clickOrderStatusButton();
 

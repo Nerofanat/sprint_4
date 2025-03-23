@@ -25,7 +25,7 @@ public class QuestionsAboutTheImportantTest {
     //Кнопку на которую мы хотим нажать
     private final Enum.BrowserType browser;
 
-    private final String[][] compareTexts = new String[][]{
+    private final String[][] theTextBeingCompared = new String[][]{
             {"0", "Сутки — 400 рублей. Оплата курьеру — наличными или картой."},
             {"1", "Пока что у нас так: один заказ — один самокат. Если хотите покататься с друзьями, можете просто сделать несколько заказов — один за другим."},
             {"2", "Допустим, вы оформляете заказ на 8 мая. Мы привозим самокат 8 мая в течение дня. Отсчёт времени аренды начинается с момента, когда вы оплатите заказ курьеру. Если мы привезли самокат 8 мая в 20:30, суточная аренда закончится 9 мая в 20:30."},
@@ -55,13 +55,13 @@ public class QuestionsAboutTheImportantTest {
     private void checkQuestionsAboutTheImportant(Enum.BrowserType browser) throws UndefinedBehaviorException {
 
         driver = BrowserInitialization.getBrowserDriver(browser);
-        BrowserInitialization.goUrl(driver);
+        BrowserInitialization.goToUrl(driver);
 
         MainPage page = new MainPage(driver);
         page.clickCookieButton();
 
 
-        for (String[] elements : compareTexts) {
+        for (String[] elements : theTextBeingCompared) {
 
             By questionId = MainPage.getQuestionidByQuestionNumber(elements[0]);
             By answerId = MainPage.getAnsweridByAnswerNumber(elements[0]);

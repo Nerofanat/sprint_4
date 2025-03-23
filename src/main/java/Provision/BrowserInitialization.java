@@ -2,13 +2,9 @@ package Provision;
 
 import Exceptions.UndefinedBehaviorException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WrapsDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import Provision.Enum.*;
-
-import java.util.Arrays;
-import java.util.List;
 
 import static Provision.Constants.TESTING_SITE_URL;
 
@@ -35,7 +31,7 @@ public class BrowserInitialization {
         return driver;
     }
 
-    public static void goUrl(WebDriver driver) {
+    public static void goToUrl(WebDriver driver) {
         driver.navigate().to(TESTING_SITE_URL);
     }
     //Не знал о существовании такого подхода, указывал путь к драйверам черещ переменные  сисетмные, так выглядит более удобно. пусит лежит тут

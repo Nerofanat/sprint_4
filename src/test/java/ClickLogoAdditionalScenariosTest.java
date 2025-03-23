@@ -21,7 +21,7 @@ public class ClickLogoAdditionalScenariosTest {
     public void clickScooterGoToTheMainPage() throws UndefinedBehaviorException {
 
         driver = BrowserInitialization.getBrowserDriver(Enum.BrowserType.FIREFOX);
-        BrowserInitialization.goUrl(driver);
+        BrowserInitialization.goToUrl(driver);
 
         SiteHeader header = new SiteHeader(driver);
         header.clickLogoScooter();
@@ -33,8 +33,8 @@ public class ClickLogoAdditionalScenariosTest {
         // Ожидаем нужный нам урл
         WaitUtils.waitForCondition(driver, ExpectedConditions.urlToBe("https://qa-scooter.praktikum-services.ru/"), 2, "Не дождались URL 'https://qa-scooter.praktikum-services.ru/'");
 
-        String expectedUrl = driver.getCurrentUrl();
-        String actual = "https://qa-scooter.praktikum-services.ru/";
+        String expectedUrl = "https://qa-scooter.praktikum-services.ru/";
+        String actual = driver.getCurrentUrl();
 
         assertEquals(actual, expectedUrl);
 
@@ -45,7 +45,7 @@ public class ClickLogoAdditionalScenariosTest {
     public void checkClickYandexGoToTheMainPageTest() throws UndefinedBehaviorException {
 
         driver = BrowserInitialization.getBrowserDriver(Enum.BrowserType.FIREFOX);
-        BrowserInitialization.goUrl(driver);
+        BrowserInitialization.goToUrl(driver);
 
 
         // Клик по кнопке + Переключение на новую вкладку

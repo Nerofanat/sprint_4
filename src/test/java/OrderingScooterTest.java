@@ -47,7 +47,7 @@ public class OrderingScooterTest {
 
         //Инициализируем браузер и переходим по ссылке
         driver = BrowserInitialization.getBrowserDriver(browser);
-        BrowserInitialization.goUrl(driver);
+        BrowserInitialization.goToUrl(driver);
 
         //Начинаем оформление на главной странице
         MainPage page = new MainPage(driver);
@@ -96,7 +96,7 @@ public class OrderingScooterTest {
 
         //Инициализируем браузер и переходим по ссылке
         driver = BrowserInitialization.getBrowserDriver(browser);
-        BrowserInitialization.goUrl(driver);
+        BrowserInitialization.goToUrl(driver);
 
         //Начинаем оформление на главной странице
         MainPage page = new MainPage(driver);

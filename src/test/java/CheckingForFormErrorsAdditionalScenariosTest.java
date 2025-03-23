@@ -19,7 +19,7 @@ public class CheckingForFormErrorsAdditionalScenariosTest {
 
         //Создаем вебдрайвер
         driver = BrowserInitialization.getBrowserDriver(Enum.BrowserType.FIREFOX);
-        BrowserInitialization.goUrl(driver);
+        BrowserInitialization.goToUrl(driver);
 
         //Начинаем оформление на главной странице
         MainPage page = new MainPage(driver);
